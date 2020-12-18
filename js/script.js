@@ -109,11 +109,11 @@ async function addCity(event) {
     event.preventDefault();
     input = event.target.input;
     cityName = input.value;
-    if (cityName == ''){
+    input.value = '';
+    if (!cityName.trim()){
         return;
     }
 
-    input.value = '';
     let loader = document.getElementById('loader_favorite').content.cloneNode(true);
     document.querySelector('ul.favorite').append(loader);
 
@@ -146,7 +146,7 @@ function deleteCity(event) {
     console.log(event.target);
     let cityID = cityCard.getAttribute('data-city_id');
     for (let i = 0; i < favoriteCities.length; i++) {
-        if (favoriteCities[i] === cityID) {
+        if (favoriteCities[i] == cityID) {
             favoriteCities.splice(i, 1);
             break;
         }
