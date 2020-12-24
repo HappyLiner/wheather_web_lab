@@ -165,18 +165,22 @@ async function addCity(event) {
 
 async function deleteCity(event) {
     let cityCard = event.target.parentNode.parentNode
+    button = cityCard.querySelector('input')
     let cityID = cityCard.getAttribute('data-city_id')
     try {
+        button.disabled = true
         response = await deleteFavoriteCity(cityID)
         if(response.success) {
             cityCard.remove()
         }
         else {
             alert('Не удалось удалить город')
+            button.disabled = false
         }
     }
     catch (error){
         console.log(error)
+        button.disabled = false
     }
 }
 
